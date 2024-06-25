@@ -25,6 +25,7 @@ Here are some ideas to get you started:
     <img height="20" src="https://img.shields.io/github/followers/Shogo-nfrealmusic?label=follow&logo=github&style=flat" />
   </a>
 </p>
+
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=Shogo-nfrealmusic&show_icons=true&theme=radical)
 ![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=Shogo-nfrealmusic&layout=compact)
 
