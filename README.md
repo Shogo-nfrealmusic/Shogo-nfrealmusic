@@ -26,6 +26,12 @@ Here are some ideas to get you started:
   </a>
 </p>
 
-![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=Shogo-nfrealmusic&show_icons=true&theme=radical)
-![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=Shogo-nfrealmusic&layout=compact)
+## GitHub Stats
+
+<div style="display: flex; flex-direction: row; justify-content: center;">
+  <img src="https://github-readme-stats.vercel.app/api?username=Shogo-nfrealmusic&show_icons=true&theme=tokyonight" alt="GitHub Stats" style="width: 49%;" />
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Shogo-nfrealmusic&layout=compact&theme=tokyonight" alt="Top Languages" style="width: 39%;" />
+</div>
+
+
 
