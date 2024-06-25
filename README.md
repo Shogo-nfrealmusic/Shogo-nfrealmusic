@@ -29,8 +29,8 @@ Here are some ideas to get you started:
 ## GitHub Stats
 
 <div style="display: flex; flex-direction: row; justify-content: center;">
-  <img src="https://github-readme-stats.vercel.app/api?username=Shogo-nfrealmusic&show_icons=true&theme=tokyonight" alt="GitHub Stats" style="width: 49%;　margin-right: 1%;" />
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Shogo-nfrealmusic&layout=compact&theme=tokyonight" alt="Top Languages" style="width: 39%;　margin-left: 11%;" />
+  <img src="https://github-readme-stats.vercel.app/api?username=Shogo-nfrealmusic&show_icons=true&theme=tokyonight" alt="GitHub Stats" style="width: 50%;　margin-right: 5%;" />
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Shogo-nfrealmusic&layout=compact&theme=tokyonight" alt="Top Languages" style="width: 40%;　margin-left: 5%;" />
 </div>
 
 
