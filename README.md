@@ -18,7 +18,7 @@
 
 <div align="center" style="margin-top: 60px;">
   <a href="https://github.com/Shogo-nfrealmusic/github-profile-trophy">
-    <img src="https://github-profile-trophy.vercel.app/?username=Shogo-nfrealmusic&theme=onedark" alt="trophy">
+    <img src="https://github-profile-trophy.vercel.app/?username=Shogo-nfrealmusic&theme=chartreuse-dark" alt="trophy">
   </a>
 </div>
 
