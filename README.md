@@ -9,6 +9,16 @@
   </a>
 </p>
 
+<h3 align="center">I'm Japanese University Student.</h3>
+
+</br>
+
+<div align="center">
+  
+📍 I plan to be majoring in computer science in Seattle,  🇺🇸  starting in September.
+  
+</div>
+
 ## GitHub Stats
 
 <div style="display: flex; padding: 0; margin: 0; justify-content: center; flex-direction: row;">
