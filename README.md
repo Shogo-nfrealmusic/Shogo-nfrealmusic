@@ -16,6 +16,8 @@
 <div align="center">
   
 📍 I plan to be majoring in computer science in Seattle,  🇺🇸  starting in September.
+
+📍 Work out, Hiking, Reading, Driving, Studying, Coding.
   
 </div>
 
