@@ -7,9 +7,6 @@
   <a href="https://x.com/f__billionaire">
     <img height="20" src="https://img.shields.io/twitter/follow/f__billionaire?label=Twitter&logo=twitter&style=flat" />
   </a>
-  <a href="https://github.com/Shogo-nfrealmusic">
-    <img height="20" src="https://img.shields.io/github/followers/Shogo-nfrealmusic?label=follow&logo=github&style=flat" />
-  </a>
 </p>
 
 ## GitHub Stats
