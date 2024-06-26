@@ -2,10 +2,10 @@
 
 <p align="left">
   <a href="https://github.com/Shogo-nfrealmusic/Shogo-nfrealmusic/">
-    <img src="https://komarev.com/ghpvc/?username=Shogo-nfrealmusic" alt="Shogo-nfrealmusic" />
+    <img height="25" src="https://komarev.com/ghpvc/?username=Shogo-nfrealmusic" alt="Shogo-nfrealmusic" />
   </a>
   <a href="https://x.com/f__billionaire">
-    <img height="20" src="https://img.shields.io/twitter/follow/f__billionaire?label=Twitter&logo=twitter&style=flat" />
+    <img height="25" src="https://img.shields.io/twitter/follow/f__billionaire?label=Twitter&logo=X&style=flat" />
   </a>
   <a href="mailto:shogo.initeng0306@gmail.com">
     <img src="https://img.shields.io/badge/Gmail-333333?style=for-the-badge&logo=gmail&logoColor=red" />
