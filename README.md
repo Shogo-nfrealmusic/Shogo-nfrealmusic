@@ -7,6 +7,12 @@
   <a href="https://x.com/f__billionaire">
     <img height="20" src="https://img.shields.io/twitter/follow/f__billionaire?label=Twitter&logo=twitter&style=flat" />
   </a>
+  <a href="mailto:shogo.initeng0306@gmail.com">
+    <img src="https://img.shields.io/badge/Gmail-333333?style=for-the-badge&logo=gmail&logoColor=red" />
+  </a>
+  <a href="#" target="_blank">
+    <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank" />
+  </a>
 </p>
 
 <h3 align="center">I'm Japanese University Student.</h3>
