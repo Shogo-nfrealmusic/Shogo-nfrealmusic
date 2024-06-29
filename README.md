@@ -45,6 +45,17 @@
     <img src="https://github-readme-activity-graph.vercel.app/graph?username=Shogo-nfrealmusic&theme=chartreuse-dark" width="100%" />
 </a>
 
+</br>
+
+<h2 align="center">:ballot_box_with_check: Languages-Frameworks-Tools </h2>
+<br/>
+<div align="center">
+  <a href="https://skillicons.dev">
+    <img src="https://skillicons.dev/icons?i=html,css,js,react,python,sass,git,github," />
+  </a>
+</div>
+
+
 
 
 
