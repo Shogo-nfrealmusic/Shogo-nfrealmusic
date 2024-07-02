@@ -24,6 +24,8 @@
 📍 I plan to be majoring in computer science in Seattle,  🇺🇸  starting in September.
 
 📍 Work out, Hiking, Reading, Driving, Studying, Coding.
+
+📍 I wanna be a billionaire.
   
 </div>
 
