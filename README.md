@@ -41,7 +41,7 @@
 </a>
 <a>
   <!--  <img src="https://github-readme-activity-graph.cyclic.app/graph?username=kohta9521&theme=chartreuse-dark" width="100%" /> -->
-    <img src="https://github-readme-activity-graph.vercel.app/graph?username=kohta9521&theme=chartreuse-dark" width="100%" />
+    <img src="https://github-readme-activity-graph.vercel.app/graph?username=Shogo-nfrealmusic&theme=chartreuse-dark" width="100%" />
 </a>
 
 </br>
