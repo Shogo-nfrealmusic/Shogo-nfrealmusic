@@ -36,12 +36,6 @@
   <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Shogo-nfrealmusic&layout=compact&theme=chartreuse-dark" alt="Top Languages" style="width: 43%;" />
 </div>
 
-<div align="center" style="margin-top: 60px;">
-  <a href="https://github.com/Shogo-nfrealmusic/github-profile-trophy">
-    <img src="https://github-profile-trophy.vercel.app/?username=Shogo-nfrealmusic&theme=matrix" alt="trophy">
-  </a>
-</div>
-
 <a href="https://github.com/ryo-ma/github-profile-trophy">
   <img src="https://github-profile-trophy.vercel.app/?username=Shogo-nfrealmusic&row=1&column=7&theme=matrix" width="100%" />
 </a>
