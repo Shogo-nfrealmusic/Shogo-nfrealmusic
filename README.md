@@ -40,8 +40,9 @@
   <img src="https://github-profile-trophy.vercel.app/?username=Shogo-nfrealmusic&row=1&column=7&theme=matrix" width="100%" />
 </a>
 
-
-[![GitHub Streak](https://streak-stats.demolab.com/?user=Shogo-nfrealmusic&theme=chartreuse-dark)](https://git.io/streak-stats)
+<a href="https://git.io/streak-stats">
+    <img src="https://streak-stats.demolab.com/?user=Shogo-nfrealmusic&theme=chartreuse-dark" width="100%" />
+</a>
 
 </br>
 
