@@ -41,7 +41,7 @@
 </a>
 
 <a href="https://git.io/streak-stats">
-    <img src="https://streak-stats.demolab.com/?user=Shogo-nfrealmusic&theme=chartreuse-dark" width="100%" />
+    <img src="https://streak-stats.demolab.com/?user=Shogo-nfrealmusic&theme=chartreuse-dark" width="100%" height="150px" />
 </a>
 
 </br>
