@@ -40,9 +40,7 @@
   <img src="https://github-profile-trophy.vercel.app/?username=Shogo-nfrealmusic&row=1&column=7&theme=matrix" width="100%" />
 </a>
 
-<a>
-    <img src="https://github-readme-activity-graph.vercel.app/graph?username=Shogo-nfrealmusic&theme=chartreuse-dark" width="100%" />
-</a>
+[![Github Activity graph](https://activity-graph.herokuapp.com/graph?username=Shogo-nfrealmusic&theme=react-dark&hide_border=true&custom_title=Activity%20Graph)](https://github.com/MrKrishnaAgarwal/readme-components-github)
 
 </br>
 
