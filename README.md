@@ -40,6 +40,10 @@
   <img src="https://github-profile-trophy.vercel.app/?username=Shogo-nfrealmusic&row=1&column=7&theme=matrix" width="100%" />
 </a>
 
+<a href="https://github.com/ashutosh00710/github-readme-activity-graph">
+    <img src="https://github-readme-activity-graph.vercel.app/graph?username=Shogo-nfrealmusic&theme=chartreuse-dark" width="100%" />
+</a>
+
 <a href="https://git.io/streak-stats">
     <img src="https://streak-stats.demolab.com/?user=Shogo-nfrealmusic&theme=chartreuse-dark" width="100%" height="300px" />
 </a>
