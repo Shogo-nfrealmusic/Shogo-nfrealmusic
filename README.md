@@ -41,7 +41,7 @@
 </a>
 
 
-[![GitHub Streak](https://streak-stats.demolab.com/?user=Shogo-nfrealmusic)](https://git.io/streak-stats)
+[![GitHub Streak](https://streak-stats.demolab.com/?user=Shogo-nfrealmusic&theme=chartreuse-dark)](https://git.io/streak-stats)
 
 </br>
 
