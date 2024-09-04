@@ -32,9 +32,13 @@
 ## GitHub Stats
 
 <div style="display: flex; padding: 0; margin: 0; justify-content: center; flex-direction: row;">
-  <img src="https://github-readme-stats.vercel.app/api?username=Shogo-nfrealmusic&show_icons=true&theme=chartreuse-dark" alt="GitHub Stats" style="width: 55%;" />
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Shogo-nfrealmusic&layout=compact&theme=chartreuse-dark" alt="Top Languages" style="width: 43%;" />
+  <img src="https://github-readme-stats.vercel.app/api?username=Shogo-nfrealmusic&show_icons=true&theme=chartreuse-dark" alt="GitHub Stats" style="width: 56%;" />
+  <a href="https://github.com/anuraghazra/github-readme-stats">
+    <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Shogo-nfrealmusic&layout=compact&langs_count=10&theme=chartreuse-dark" width="42%" align="right" />
+  </a>
 </div>
+
+
 
 <a href="https://github.com/ryo-ma/github-profile-trophy">
   <img src="https://github-profile-trophy.vercel.app/?username=Shogo-nfrealmusic&row=1&column=7&theme=matrix" width="100%" />
