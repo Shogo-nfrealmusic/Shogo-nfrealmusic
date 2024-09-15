@@ -32,7 +32,7 @@
 ## GitHub Stats
 
 <div style="display: flex; padding: 0; margin: 0; justify-content: center; flex-direction: row;">
-  <img src="https://github-readme-stats.vercel.app/api?username=Shogo-nfrealmusic&show_icons=true&theme=chartreuse-dark" alt="GitHub Stats" style="width: 56%;" />
+  <img src="https://github-readme-stats.vercel.app/api?username=Shogo-nfrealmusic&show_icons=true&theme=chartreuse-dark" alt="GitHub Stats" style="width: 50%;" />
   <a href="https://github.com/anuraghazra/github-readme-stats">
     <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Shogo-nfrealmusic&layout=compact&langs_count=10&theme=chartreuse-dark" width="40%" align="right" />
   </a>
