@@ -58,7 +58,7 @@
 <br/>
 <div align="center">
   <a href="https://skillicons.dev">
-    <img src="https://skillicons.dev/icons?i=html,css,sass,js,react,next,ts,python,django,sql,git,github,notion" />
+    <img src="https://skillicons.dev/icons?i=html,css,sass,js,react,next,ts,python,django,SQL,git,github,notion" />
   </a>
 </div>
 
