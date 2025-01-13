@@ -48,9 +48,8 @@
     <img src="https://github-readme-activity-graph.vercel.app/graph?username=Shogo-nfrealmusic&theme=chartreuse-dark" width="100%" />
 </a>
 
-<a href="https://git.io/streak-stats">
-    [![GitHub Streak](https://streak-stats.demolab.com/?user=Shogo-nfrealmusic)](https://git.io/streak-stats)
-</a>
+[![GitHub Streak](https://streak-stats.demolab.com/?user=Shogo-nfrealmusic)](https://git.io/streak-stats)
+
 
 </br>
 
