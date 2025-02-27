@@ -15,20 +15,6 @@
   </a>
 </p>
 
-
-
-
-
-<h3 align="center">I'm Japanese University Student.</h3>
-
-</br>
-
-<h3 align="center">
-  
-📍 Took a leave of absence from a Japanese university to major in CS in the U.S.
-  
-</h3>
-
 ## GitHub Stats
 
 <table>
