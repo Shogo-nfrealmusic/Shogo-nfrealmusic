@@ -18,7 +18,7 @@
     <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn"/>
   </a>
   <!-- Instagram -->
-  <a href="https://instagram.com/your_instagram_account](https://www.instagram.com/copilot_shogo/">
+  <a href="https://www.instagram.com/copilot_shogo/">
     <img 
       src="https://img.shields.io/badge/Instagram-833AB4?style=for-the-badge&logo=instagram&logoColor=white" 
       alt="Instagram" 
