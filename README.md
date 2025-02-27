@@ -1,23 +1,19 @@
 ## Hi there 👋
 
+<!-- 
 <p align="left">
-  <!-- GitHub プロフィールビュー -->
   <a href="https://github.com/Shogo-nfrealmusic/Shogo-nfrealmusic/">
     <img src="https://komarev.com/ghpvc/?username=Shogo-nfrealmusic&style=for-the-badge" alt="Profile Views"/>
   </a>
-  <!-- Twitter -->
   <a href="https://x.com/f__billionaire">
     <img src="https://img.shields.io/twitter/follow/f__billionaire?label=Twitter&logo=X&style=for-the-badge" alt="Twitter"/>
   </a>
-  <!-- Gmail -->
   <a href="mailto:shogo.initeng0306@gmail.com">
     <img src="https://img.shields.io/badge/Gmail-333333?style=for-the-badge&logo=gmail&logoColor=red" alt="Gmail"/>
   </a>
-  <!-- LinkedIn -->
   <a href="http://linkedin.com/in/shogo-kikuchi-19b792321">
     <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn"/>
   </a>
-  <!-- Instagram -->
   <a href="https://www.instagram.com/copilot_shogo/">
     <img 
       src="https://img.shields.io/badge/Instagram-833AB4?style=for-the-badge&logo=instagram&logoColor=white" 
@@ -25,9 +21,9 @@
     />
   </a>
 </p>
+-->
 
 
-</p>
 
 ## GitHub Stats
 
