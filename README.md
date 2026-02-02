@@ -24,10 +24,7 @@
 -->
 
 
-
-## GitHub Stats
-
-<table>
+<!-- <table>
   <tr>
     <td>
       <img src="https://github-readme-stats.vercel.app/api?username=Shogo-nfrealmusic&show_icons=true&theme=chartreuse-dark" alt="GitHub Stats" />
@@ -36,13 +33,13 @@
       <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Shogo-nfrealmusic&layout=compact&langs_count=10&theme=chartreuse-dark" alt="Most Used Languages" />
     </td>
   </tr>
-</table>
+</table> -->
 
 
 
-<a href="https://github.com/ryo-ma/github-profile-trophy">
+<!-- <a href="https://github.com/ryo-ma/github-profile-trophy">
   <img src="https://github-profile-trophy.vercel.app/?username=Shogo-nfrealmusic&row=1&column=7&theme=matrix" width="100%" />
-</a>
+</a> -->
 
 <a href="https://github.com/ashutosh00710/github-readme-activity-graph">
     <img src="https://github-readme-activity-graph.vercel.app/graph?username=Shogo-nfrealmusic&theme=chartreuse-dark" width="100%" />
