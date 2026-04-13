@@ -63,7 +63,7 @@ I build web products at the intersection of **technology, creativity, and growth
 <br/>
 <div align="center">
   <a href="https://skillicons.dev">
-    <img src="https://skillicons.dev/icons?i=html,css,sass,js,react,next,ts,python,django,go,aws,git,github,docker,notion" />
+    <img src="https://skillicons.dev/icons?i=html,css,js,react,next,ts,python,django,go,aws,supabase,git,github,docker,notion" />
   </a>
 </div>
 
