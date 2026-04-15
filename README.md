@@ -4,10 +4,10 @@
 Bilingual (JP/EN) full-stack developer and creator based in Japan.  
 I build web products at the intersection of **technology, creativity, and growth**.
 
-- 🔭 Working on full-stack apps
-- 🚀 Co-founder of **ATE9**, a creative & digital product agency
-- 📸 Building **Tetty’s Photo Studio**
-- 🌱 Learning AI strategy, scalable systems, and product growth
+- 🔭 Working on full-stack apps  
+- 📸 CTO at Tetty’s Photo Studio  
+- 🛍️ Product Manager Intern at Mercari  
+- 🌱 Learning AI strategy, scalable systems, and product growth  
 - 💬 Ask me about web dev, creator businesses, or studying abroad in the U.S.
 
 
