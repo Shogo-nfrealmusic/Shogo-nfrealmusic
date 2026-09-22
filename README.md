@@ -1,78 +1,49 @@
+<img src="./assets/banner.svg" width="100%" alt="Shogo Kikuchi — Co-founder & CTO, TPS Collective" />
 
-### Hi, I'm Shogo Kikuchi 👋
-
-Bilingual (JP/EN) full-stack developer and creator based in Japan.  
-I build web products at the intersection of **technology, creativity, and growth**.
-
-- 🔭 Working on full-stack apps  
-- 📸 CTO at Tetty’s Photo Studio  
-- 🛍️ Product Manager Intern at Mercari  
-- 🌱 Learning AI strategy, scalable systems, and product growth  
-- 💬 Ask me about web dev, creator businesses, or studying abroad in the U.S.
-
-
-<!-- 
-<p align="left">
-  <a href="https://github.com/Shogo-nfrealmusic/Shogo-nfrealmusic/">
-    <img src="https://komarev.com/ghpvc/?username=Shogo-nfrealmusic&style=for-the-badge" alt="Profile Views"/>
-  </a>
-  <a href="https://x.com/f__billionaire">
-    <img src="https://img.shields.io/twitter/follow/f__billionaire?label=Twitter&logo=X&style=for-the-badge" alt="Twitter"/>
-  </a>
-  <a href="mailto:shogo.initeng0306@gmail.com">
-    <img src="https://img.shields.io/badge/Gmail-333333?style=for-the-badge&logo=gmail&logoColor=red" alt="Gmail"/>
-  </a>
-  <a href="http://linkedin.com/in/shogo-kikuchi-19b792321">
-    <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn"/>
-  </a>
-  <a href="https://www.instagram.com/copilot_shogo/">
-    <img 
-      src="https://img.shields.io/badge/Instagram-833AB4?style=for-the-badge&logo=instagram&logoColor=white" 
-      alt="Instagram" 
-    />
-  </a>
+<p align="center">
+  <a href="https://shogo.build"><img src="https://img.shields.io/badge/Portfolio-0D1117?style=flat-square&logo=vercel&logoColor=5EEAD4&labelColor=0D1117" alt="Portfolio" /></a>
+  <a href="https://x.com/f__billionaire"><img src="https://img.shields.io/badge/X-0D1117?style=flat-square&logo=x&logoColor=E6EDF3&labelColor=0D1117" alt="X" /></a>
+  <a href="https://linkedin.com/in/shogo-kikuchi-19b792321"><img src="https://img.shields.io/badge/LinkedIn-0D1117?style=flat-square&logo=linkedin&logoColor=0A66C2&labelColor=0D1117" alt="LinkedIn" /></a>
+  <a href="mailto:shogo.initeng0306@gmail.com"><img src="https://img.shields.io/badge/Email-0D1117?style=flat-square&logo=gmail&logoColor=EA4335&labelColor=0D1117" alt="Email" /></a>
 </p>
--->
 
+I am 22 and based in Tokyo. I run the engineering side of a company that books photo shoots for people visiting Japan, so most of what I build is the unglamorous part — booking, payments, operations, and the agents that keep those running when nobody is watching.
 
-<!-- <table>
-  <tr>
-    <td>
-      <img src="https://github-readme-stats.vercel.app/api?username=Shogo-nfrealmusic&show_icons=true&theme=chartreuse-dark" alt="GitHub Stats" />
-    </td>
-    <td>
-      <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Shogo-nfrealmusic&layout=compact&langs_count=10&theme=chartreuse-dark" alt="Most Used Languages" />
-    </td>
-  </tr>
-</table> -->
+I studied Computer Science in Seattle and I work in Japanese and English.
 
+<br />
 
+### Stack
 
-<!-- <a href="https://github.com/ryo-ma/github-profile-trophy">
-  <img src="https://github-profile-trophy.vercel.app/?username=Shogo-nfrealmusic&row=1&column=7&theme=matrix" width="100%" />
-</a> -->
+<table>
+<tr>
+<td width="140"><sub><b>Languages</b></sub></td>
+<td><img src="https://skillicons.dev/icons?i=ts,js,python,go&theme=dark" height="40" /></td>
+</tr>
+<tr>
+<td><sub><b>Frontend</b></sub></td>
+<td><img src="https://skillicons.dev/icons?i=react,nextjs,tailwind,html,css&theme=dark" height="40" /></td>
+</tr>
+<tr>
+<td><sub><b>Backend &amp; data</b></sub></td>
+<td><img src="https://skillicons.dev/icons?i=nodejs,django,supabase,postgres,prisma&theme=dark" height="40" /></td>
+</tr>
+<tr>
+<td><sub><b>Infrastructure</b></sub></td>
+<td><img src="https://skillicons.dev/icons?i=vercel,cloudflare,aws,docker,git,github&theme=dark" height="40" /></td>
+</tr>
+</table>
 
-<a href="https://github.com/ashutosh00710/github-readme-activity-graph">
-    <img src="https://github-readme-activity-graph.vercel.app/graph?username=Shogo-nfrealmusic&theme=chartreuse-dark" width="100%" />
-</a>
+<sub>Also: Anthropic API · MCP · Stripe · GA4 · Search Console</sub>
 
+<br />
 
-</br>
+### Contributions
 
-<h2 align="center">:ballot_box_with_check: Languages-Frameworks-Tools </h2>
-<br/>
-<div align="center">
-  <a href="https://skillicons.dev">
-    <img src="https://skillicons.dev/icons?i=html,css,js,react,next,ts,python,django,go,aws,supabase,git,github,docker,notion" />
-  </a>
-</div>
+<img src="https://raw.githubusercontent.com/Shogo-nfrealmusic/Shogo-nfrealmusic/output/snake.svg" width="100%" alt="Contribution graph" />
 
+<br />
 
-
-
-
-
-
-
-
-
+<p align="center">
+  <img src="https://github-readme-streak-stats.herokuapp.com?user=Shogo-nfrealmusic&theme=dark&hide_border=true&background=0D1117&ring=5EEAD4&fire=5EEAD4&currStreakLabel=5EEAD4&sideLabels=8B949E&dates=6E7681&stroke=21262D" alt="Streak" />
+</p>
