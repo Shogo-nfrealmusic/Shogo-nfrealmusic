@@ -1,0 +1,44 @@
+name: profile cards
+
+# Regenerates the activity graph and the stats card from the GitHub API and
+# commits them. They used to be loaded from github-readme-activity-graph and
+# github-readme-stats, which now return 402 and 503 — the images on the profile
+# were already broken. Generating them here means they cannot break again
+# because a free tier ran out.
+
+on:
+  schedule:
+    - cron: "17 21 * * *"
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - scripts/cards.mjs
+      - .github/workflows/cards.yml
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Generate
+        run: node scripts/cards.mjs
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          USER_LOGIN: ${{ github.repository_owner }}
+
+      - name: Commit if anything changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/activity.svg assets/stats.svg
+          git diff --staged --quiet || git commit -m "Update the profile cards"
+          git push

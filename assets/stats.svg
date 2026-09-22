@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 190" width="1200" height="190" role="img" aria-label="GitHub statistics">
+<title>GitHub statistics</title>
+<rect width="1200" height="190" rx="10" fill="#0D1117"/>
+<rect width="1200" height="190" rx="10" fill="none" stroke="#21262D"/>
+<text x="72" y="40" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="15" font-weight="600" fill="#F0F6FC">GitHub</text>
+<text x="72" y="60" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11.5" letter-spacing="0.6" fill="#8B949E">GENERATED IN THIS REPOSITORY, NOT BY A THIRD PARTY</text>
+<g opacity="0" transform="translate(72.0,0)">
+  <animate attributeName="opacity" from="0" to="1" begin="0.00s" dur="0.5s" fill="freeze"/>
+  
+  <text x="0" y="122" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="34" font-weight="700" fill="#5EEAD4" letter-spacing="-0.8">1,438</text>
+  <text x="0" y="144" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" font-weight="500" fill="#F0F6FC">Contributions</text>
+  <text x="0" y="162" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10.5" letter-spacing="0.5" fill="#3D444D">PAST YEAR</text>
+</g><g opacity="0" transform="translate(248.0,0)">
+  <animate attributeName="opacity" from="0" to="1" begin="0.12s" dur="0.5s" fill="freeze"/>
+  <line x1="-24" y1="90" x2="-24" y2="150" stroke="#21262D"/>
+  <text x="0" y="122" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="34" font-weight="700" fill="#5EEAD4" letter-spacing="-0.8">1,412</text>
+  <text x="0" y="144" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" font-weight="500" fill="#F0F6FC">Commits</text>
+  <text x="0" y="162" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10.5" letter-spacing="0.5" fill="#3D444D">PUBLIC AND PRIVATE</text>
+</g><g opacity="0" transform="translate(424.0,0)">
+  <animate attributeName="opacity" from="0" to="1" begin="0.24s" dur="0.5s" fill="freeze"/>
+  <line x1="-24" y1="90" x2="-24" y2="150" stroke="#21262D"/>
+  <text x="0" y="122" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="34" font-weight="700" fill="#5EEAD4" letter-spacing="-0.8">13</text>
+  <text x="0" y="144" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" font-weight="500" fill="#F0F6FC">Pull requests</text>
+  <text x="0" y="162" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10.5" letter-spacing="0.5" fill="#3D444D">OPENED</text>
+</g><g opacity="0" transform="translate(600.0,0)">
+  <animate attributeName="opacity" from="0" to="1" begin="0.36s" dur="0.5s" fill="freeze"/>
+  <line x1="-24" y1="90" x2="-24" y2="150" stroke="#21262D"/>
+  <text x="0" y="122" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="34" font-weight="700" fill="#5EEAD4" letter-spacing="-0.8">100</text>
+  <text x="0" y="144" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" font-weight="500" fill="#F0F6FC">Repositories</text>
+  <text x="0" y="162" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10.5" letter-spacing="0.5" fill="#3D444D">NOT FORKS</text>
+</g><g opacity="0" transform="translate(776.0,0)">
+  <animate attributeName="opacity" from="0" to="1" begin="0.48s" dur="0.5s" fill="freeze"/>
+  <line x1="-24" y1="90" x2="-24" y2="150" stroke="#21262D"/>
+  <text x="0" y="122" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="34" font-weight="700" fill="#5EEAD4" letter-spacing="-0.8">5d</text>
+  <text x="0" y="144" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" font-weight="500" fill="#F0F6FC">Current streak</text>
+  <text x="0" y="162" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10.5" letter-spacing="0.5" fill="#3D444D">CONSECUTIVE DAYS</text>
+</g><g opacity="0" transform="translate(952.0,0)">
+  <animate attributeName="opacity" from="0" to="1" begin="0.60s" dur="0.5s" fill="freeze"/>
+  <line x1="-24" y1="90" x2="-24" y2="150" stroke="#21262D"/>
+  <text x="0" y="122" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="34" font-weight="700" fill="#5EEAD4" letter-spacing="-0.8">15d</text>
+  <text x="0" y="144" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" font-weight="500" fill="#F0F6FC">Longest streak</text>
+  <text x="0" y="162" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10.5" letter-spacing="0.5" fill="#3D444D">PAST YEAR</text>
+</g>
+</svg>

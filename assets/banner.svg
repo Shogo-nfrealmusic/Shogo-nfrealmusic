@@ -42,7 +42,7 @@
        font-family="ui-monospace, SFMono-Regular, Menlo, monospace" opacity="0">
       <text x="74" y="206" fill="#5EEAD4">TOKYO</text>
       <text x="152" y="206" fill="#3D444D">/</text>
-      <text x="174" y="206" fill="#5EEAD4">TYPESCRIPT</text>
+      <text x="174" y="206" fill="#5EEAD4">FULL STACK</text>
       <text x="316" y="206" fill="#3D444D">/</text>
       <text x="338" y="206" fill="#5EEAD4">AI AGENTS</text>
       <animate attributeName="opacity" from="0" to="1" begin="0.5s" dur="0.7s" fill="freeze" />
