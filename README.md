@@ -40,7 +40,7 @@ I studied Computer Science in Seattle and I work in Japanese and English.
 
 ### Contributions
 
-<img src="https://raw.githubusercontent.com/Shogo-nfrealmusic/Shogo-nfrealmusic/output/snake.svg" width="100%" alt="Contribution graph" />
+<img src="https://raw.githubusercontent.com/Shogo-nfrealmusic/Shogo-nfrealmusic/refs/heads/output/snake.svg" width="100%" alt="Contribution graph" />
 
 <br />
 
