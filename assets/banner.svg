@@ -3,59 +3,59 @@
 
   <defs>
     <pattern id="g" width="20" height="20" patternUnits="userSpaceOnUse">
-      <circle cx="1" cy="1" r="0.9" fill="#2A3038" />
+      <circle cx="1" cy="1" r="0.9" fill="#16351F" />
     </pattern>
     <radialGradient id="glow" cx="0.18" cy="0.35" r="0.6">
-      <stop offset="0" stop-color="#5EEAD4" stop-opacity="0.10" />
-      <stop offset="1" stop-color="#5EEAD4" stop-opacity="0" />
+      <stop offset="0" stop-color="#00FF41" stop-opacity="0.10" />
+      <stop offset="1" stop-color="#00FF41" stop-opacity="0" />
     </radialGradient>
   </defs>
 
-  <rect width="1200" height="240" fill="#0D1117" />
+  <rect width="1200" height="240" fill="#000000" />
   <rect width="1200" height="240" fill="url(#g)" />
   <rect width="1200" height="240" fill="url(#glow)" />
 
   <g font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">
 
-    <text x="72" y="96" fill="#F0F6FC" font-size="56" font-weight="800" letter-spacing="-1.6" opacity="0">
+    <text x="72" y="96" fill="#D6FFE1" font-size="56" font-weight="800" letter-spacing="-1.6" opacity="0">
       Shogo Kikuchi
       <animate attributeName="opacity" from="0" to="1" dur="0.6s" fill="freeze" />
     </text>
 
-    <text x="1128" y="96" text-anchor="end" fill="#5EEAD4" font-size="15" font-weight="500"
+    <text x="1128" y="96" text-anchor="end" fill="#00FF41" font-size="15" font-weight="500"
           letter-spacing="0.6" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" opacity="0">
       shogo.build
       <animate attributeName="opacity" from="0" to="0.95" begin="0.7s" dur="0.7s" fill="freeze" />
     </text>
 
-    <text x="74" y="136" fill="#9DA7B3" font-size="17" letter-spacing="0.1" opacity="0">
+    <text x="74" y="136" fill="#7FDF95" font-size="17" letter-spacing="0.1" opacity="0">
       Co-founder &amp; CTO, TPS Collective
       <animate attributeName="opacity" from="0" to="1" begin="0.2s" dur="0.6s" fill="freeze" />
     </text>
 
-    <text x="74" y="163" fill="#9DA7B3" font-size="17" letter-spacing="0.1" opacity="0">
+    <text x="74" y="163" fill="#7FDF95" font-size="17" letter-spacing="0.1" opacity="0">
       Product Manager at Mercari from April 2027
       <animate attributeName="opacity" from="0" to="1" begin="0.32s" dur="0.6s" fill="freeze" />
     </text>
 
     <g font-size="12.5" font-weight="600" letter-spacing="2.2"
        font-family="ui-monospace, SFMono-Regular, Menlo, monospace" opacity="0">
-      <text x="74" y="206" fill="#5EEAD4">TOKYO</text>
-      <text x="152" y="206" fill="#3D444D">/</text>
-      <text x="174" y="206" fill="#5EEAD4">FULL STACK</text>
-      <text x="316" y="206" fill="#3D444D">/</text>
-      <text x="338" y="206" fill="#5EEAD4">AI AGENTS</text>
+      <text x="74" y="206" fill="#00FF41">TOKYO</text>
+      <text x="152" y="206" fill="#2A5535">/</text>
+      <text x="174" y="206" fill="#00FF41">FULL STACK</text>
+      <text x="316" y="206" fill="#2A5535">/</text>
+      <text x="338" y="206" fill="#00FF41">AI AGENTS</text>
       <animate attributeName="opacity" from="0" to="1" begin="0.5s" dur="0.7s" fill="freeze" />
     </g>
   </g>
 
-  <line x1="72" y1="180" x2="1128" y2="180" stroke="#5EEAD4" stroke-width="1" opacity="0.5"
+  <line x1="72" y1="180" x2="1128" y2="180" stroke="#00FF41" stroke-width="1" opacity="0.5"
         stroke-dasharray="1056" stroke-dashoffset="1056">
     <animate attributeName="stroke-dashoffset" from="1056" to="0" dur="1.5s" begin="0.25s"
              fill="freeze" calcMode="spline" keySplines="0.16 1 0.3 1" keyTimes="0;1" />
   </line>
 
-  <circle r="3" fill="#5EEAD4" cx="72" cy="180" opacity="0">
+  <circle r="3" fill="#00FF41" cx="72" cy="180" opacity="0">
     <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.08;0.85;1" dur="1.5s" begin="0.25s" fill="freeze" />
     <animate attributeName="cx" from="72" to="1128" dur="1.5s" begin="0.25s" fill="freeze"
              calcMode="spline" keySplines="0.16 1 0.3 1" keyTimes="0;1" />
