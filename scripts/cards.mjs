@@ -1,14 +1,18 @@
-// Generates the profile cards from the GitHub API and writes them as SVG.
+// Generates the profile images and writes them as SVG.
 //
-// The layouts follow the two projects these used to be loaded from:
-//   activity.svg  ->  Ashutosh00710/github-readme-activity-graph
-//                     31 days, grid, axis titles, point markers, area fill
-//   stats.svg     ->  stats-organization/github-stats-extended
-//                     titled card, icon rows, rank circle
+//   header-{light,dark}.svg    a page header: icon, title and properties
+//   stack-{light,dark}.svg     the stack as rows of tags, each with its logo
+//   activity-{light,dark}.svg  four numbers and a year of contributions
+//   icons/*.svg                small grey link icons, one file for both themes
 //
-// Those are hosted on free instances that now return 402 and 503, so the images
-// were dead on the profile. Rendering them here keeps the design and removes the
-// dependency.
+// Each image comes in a light and a dark version and the README picks one with
+// <picture>, so it sits on GitHub's background in either theme. The look follows
+// a Notion page: the page icon above the title, grey property rows,
+// and pastel tags.
+//
+// The contribution numbers used to be loaded from github-readme-stats and
+// github-readme-activity-graph, whose free instances now return 402 and 503.
+// Rendering them here means they cannot break again because a free tier ran out.
 //
 // Run: GITHUB_TOKEN=... node scripts/cards.mjs
 
@@ -18,35 +22,55 @@ const USER = process.env.USER_LOGIN ?? "Shogo-nfrealmusic";
 const TOKEN = process.env.GITHUB_TOKEN;
 if (!TOKEN) throw new Error("GITHUB_TOKEN is required");
 
-// Black terminal, one green.
-const BG = "#000000";
-const GREEN = "#00FF41";
-const GREEN_DIM = "#00B32C";
-const GRID = "#0E2A16";
-const TEXT = "#9BFFB4";
-const MUTED = "#3F7A4F";
-const BORDER = "#123D1E";
+const ICONS = "https://cdn.jsdelivr.net/npm/simple-icons@16.34.0/icons";
+const FONT = "ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif";
 
-const FONT = "'Segoe UI', Ubuntu, Helvetica, Arial, sans-serif";
-const MONO = "ui-monospace, SFMono-Regular, 'Cascadia Mono', Menlo, monospace";
+// Notion's tag colours, light and dark.
+const TAG = {
+  light: {
+    gray: ["#E3E2E0", "#32302C"],
+    brown: ["#EEE0DA", "#442A1E"],
+    orange: ["#FADEC9", "#49290E"],
+    yellow: ["#FDECC8", "#402C1B"],
+    green: ["#DBEDDB", "#1C3829"],
+    blue: ["#D3E5EF", "#183347"],
+    purple: ["#E8DEEE", "#412454"],
+    pink: ["#F5E0E9", "#4C2337"],
+  },
+  dark: {
+    gray: ["#373737", "#D4D4D4"],
+    brown: ["#4A3228", "#E6D5CC"],
+    orange: ["#5C3B23", "#F5D3B7"],
+    yellow: ["#564328", "#F2DDB3"],
+    green: ["#243D30", "#C4E3CC"],
+    blue: ["#143A4E", "#BFDCEF"],
+    purple: ["#3C2D49", "#E1CDEE"],
+    pink: ["#4E2C3C", "#F1CCDC"],
+  },
+};
 
+const THEMES = {
+  light: { ink: "#37352F", muted: "#91918E", rule: "#EDEDEC", heat: ["#EFEFED", "#C7E5CF", "#8CCB9C", "#4F9F6A", "#2B6B42"] },
+  dark: { ink: "#E6E6E3", muted: "#8E8E8B", rule: "#262A30", heat: ["#1C2026", "#1E4430", "#2B6B45", "#43995F", "#6FC48A"] },
+};
+
+const esc = (s) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;");
+// A rough width for system sans; good enough to size a tag around its text.
+const textW = (s, size) =>
+  [...s].reduce((w, ch) => w + (/[ il.,·'|]/.test(ch) ? 0.3 : /[A-Z]/.test(ch) ? 0.66 : /[mwMW]/.test(ch) ? 0.82 : 0.55), 0) * size;
+
+/* --------------------------------------------------------------- data */
 const query = `
 {
   user(login: "${USER}") {
-    name
+    avatarUrl(size: 240)
     contributionsCollection {
       totalCommitContributions
       totalPullRequestContributions
-      totalIssueContributions
-      totalPullRequestReviewContributions
       restrictedContributionsCount
-      contributionCalendar { weeks { contributionDays { date contributionCount } } }
+      contributionCalendar { totalContributions weeks { contributionDays { date contributionCount } } }
     }
     repositoriesContributedTo(first: 1, contributionTypes: [COMMIT, PULL_REQUEST, ISSUE, REPOSITORY]) { totalCount }
-    repositories(first: 100, ownerAffiliations: OWNER, isFork: false) {
-      totalCount
-      nodes { stargazerCount }
-    }
   }
 }`;
 
@@ -60,172 +84,228 @@ const { data, errors } = await res.json();
 if (errors) throw new Error(JSON.stringify(errors));
 
 const c = data.user.contributionsCollection;
-const days = c.contributionCalendar.weeks.flatMap((w) => w.contributionDays);
-const stars = data.user.repositories.nodes.reduce((a, r) => a + r.stargazerCount, 0);
-const commits = c.totalCommitContributions + c.restrictedContributionsCount;
-
+const weeks = c.contributionCalendar.weeks;
 const n = (x) => x.toLocaleString("en-US");
-mkdirSync("assets", { recursive: true });
 
-/* ------------------------------------------------ activity graph, 31 days */
-{
-  const W = 1000;
-  const H = 400;
-  const padT = 80;
-  const padR = 50;
-  const padB = 70;
-  const padL = 90;
-  const plotW = W - padL - padR;
-  const plotH = H - padT - padB;
+const avatarRes = await fetch(data.user.avatarUrl);
+const avatar = `data:${avatarRes.headers.get("content-type") ?? "image/jpeg"};base64,${Buffer.from(await avatarRes.arrayBuffer()).toString("base64")}`;
 
-  const window = days.slice(-31);
-  const max = Math.max(...window.map((d) => d.contributionCount), 1);
-  // Round the top of the axis up to something a tick can land on.
-  const step = Math.max(1, Math.ceil(max / 4));
-  const top = step * 4;
-
-  const x = (i) => padL + (i / (window.length - 1)) * plotW;
-  const y = (v) => padT + plotH - (v / top) * plotH;
-
-  const pts = window.map((d, i) => [x(i), y(d.contributionCount)]);
-  let line = `M${pts[0][0].toFixed(1)},${pts[0][1].toFixed(1)}`;
-  for (let i = 0; i < pts.length - 1; i += 1) {
-    const [x0, y0] = pts[i];
-    const [x1, y1] = pts[i + 1];
-    const mx = (x0 + x1) / 2;
-    line += `C${mx.toFixed(1)},${y0.toFixed(1)} ${mx.toFixed(1)},${y1.toFixed(1)} ${x1.toFixed(1)},${y1.toFixed(1)}`;
-  }
-  const area = `${line}L${pts.at(-1)[0].toFixed(1)},${(padT + plotH).toFixed(1)}L${padL},${(padT + plotH).toFixed(1)}Z`;
-
-  const label = (d) =>
-    new Date(d).toLocaleDateString("en-US", { month: "short", day: "numeric", timeZone: "UTC" });
-
-  const yTicks = [0, 1, 2, 3, 4].map((k) => k * step);
-  const xEvery = 5;
-
-  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" role="img" aria-label="${USER} contribution graph, last 31 days">
-<title>${USER}'s contribution graph</title>
-<defs>
-  <linearGradient id="area" x1="0" y1="0" x2="0" y2="1">
-    <stop offset="0" stop-color="${GREEN}" stop-opacity="0.30"/>
-    <stop offset="1" stop-color="${GREEN}" stop-opacity="0.02"/>
-  </linearGradient>
-  <clipPath id="wipe"><rect x="0" y="0" width="0" height="${H}">
-    <animate attributeName="width" from="0" to="${W}" dur="1.5s" fill="freeze" calcMode="spline" keySplines="0.16 1 0.3 1" keyTimes="0;1"/>
-  </rect></clipPath>
-</defs>
-
-<rect width="${W}" height="${H}" rx="6" fill="${BG}" stroke="${BORDER}"/>
-
-<text x="35" y="45" font-family="${FONT}" font-size="24" font-weight="600" fill="${GREEN}">${USER}'s contribution graph</text>
-<text x="35" y="66" font-family="${MONO}" font-size="12" letter-spacing="0.5" fill="${MUTED}">LAST 31 DAYS</text>
-
-<text transform="translate(28,${padT + plotH / 2}) rotate(-90)" text-anchor="middle" font-family="${FONT}" font-size="13" fill="${MUTED}">Contributions</text>
-<text x="${padL + plotW / 2}" y="${H - 18}" text-anchor="middle" font-family="${FONT}" font-size="13" fill="${MUTED}">Days</text>
-
-${yTicks
-  .map(
-    (v) => `<line x1="${padL}" y1="${y(v).toFixed(1)}" x2="${W - padR}" y2="${y(v).toFixed(1)}" stroke="${GRID}"/>
-<text x="${padL - 12}" y="${(y(v) + 4).toFixed(1)}" text-anchor="end" font-family="${MONO}" font-size="12" fill="${MUTED}">${v}</text>`,
-  )
-  .join("\n")}
-
-${window
-  .map((d, i) =>
-    i % xEvery === 0 || i === window.length - 1
-      ? `<line x1="${x(i).toFixed(1)}" y1="${padT}" x2="${x(i).toFixed(1)}" y2="${(padT + plotH).toFixed(1)}" stroke="${GRID}"/>
-<text x="${x(i).toFixed(1)}" y="${(padT + plotH + 24).toFixed(1)}" text-anchor="middle" font-family="${MONO}" font-size="11" fill="${MUTED}">${label(d.date)}</text>`
-      : "",
-  )
-  .join("\n")}
-
-<g clip-path="url(#wipe)">
-  <path d="${area}" fill="url(#area)"/>
-  <path d="${line}" fill="none" stroke="${GREEN}" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
-  ${pts.map(([px, py]) => `<circle cx="${px.toFixed(1)}" cy="${py.toFixed(1)}" r="3" fill="${BG}" stroke="${GREEN}" stroke-width="1.6"/>`).join("")}
-</g>
-</svg>
-`;
-  writeFileSync("assets/activity.svg", svg);
+// Pull the path out of a simple-icons SVG (all are on a 24x24 grid).
+async function logo(slug) {
+  const r = await fetch(`${ICONS}/${slug}.svg`);
+  if (!r.ok) throw new Error(`icon ${slug}: ${r.status}`);
+  return (await r.text()).match(/ d="([^"]+)"/)[1];
 }
 
-/* ---------------------------------------------------------- stats card */
-{
-  const W = 500;
-  const H = 210;
+mkdirSync("assets/icons", { recursive: true });
 
-  // The rank formula from github-readme-stats, simplified: a weighted score
-  // against a median developer, then bucketed.
-  const score =
-    commits * 1 +
-    c.totalPullRequestContributions * 2 +
-    c.totalIssueContributions * 1 +
-    c.totalPullRequestReviewContributions * 1 +
-    stars * 3 +
-    data.user.repositoriesContributedTo.totalCount * 1;
-  const levels = [
-    [2500, "S"],
-    [1600, "A+"],
-    [1000, "A"],
-    [600, "A-"],
-    [350, "B+"],
-    [180, "B"],
-    [90, "B-"],
-    [40, "C+"],
-    [0, "C"],
-  ];
-  const rank = levels.find(([t]) => score >= t)[1];
-  const pct = Math.min(0.97, score / 2500);
-  const R = 40;
-  const CIRC = 2 * Math.PI * R;
+/* ------------------------------------------------- small property icons */
+// 16x16, stroked, drawn in the muted colour.
+const PROP = {
+  role: `<rect x="2" y="5" width="12" height="9" rx="1.5"/><path d="M6 5V3.5A1 1 0 0 1 7 2.5h2a1 1 0 0 1 1 1V5M2 9h12"/>`,
+  place: `<path d="M8 14.5s4.5-4.2 4.5-7.8a4.5 4.5 0 0 0-9 0c0 3.6 4.5 7.8 4.5 7.8Z"/><circle cx="8" cy="6.7" r="1.6"/>`,
+  next: `<circle cx="8" cy="8" r="6"/><path d="M8 4.8V8l2.2 1.4"/>`,
+  focus: `<path d="M2.5 8.6V3.2a.7.7 0 0 1 .7-.7h5.4l5 5a1 1 0 0 1 0 1.4l-4.6 4.6a1 1 0 0 1-1.4 0Z"/><circle cx="5.6" cy="5.6" r="1"/>`,
+  lang: `<path d="M2.5 3.5h8M6.5 2v1.5M4 3.5s.6 3.4 4.5 5.5M9 3.5S8.2 7 3.5 9.5M9 14l2.5-6 2.5 6M9.8 12.2h3.4"/>`,
+};
 
-  const icon = {
-    star: `<path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"/>`,
-    commit: `<path d="M11.93 8.5a4.002 4.002 0 0 1-7.86 0H.75a.75.75 0 0 1 0-1.5h3.32a4.002 4.002 0 0 1 7.86 0h3.32a.75.75 0 0 1 0 1.5Zm-1.43-.75a2.5 2.5 0 1 0-5 0 2.5 2.5 0 0 0 5 0Z"/>`,
-    pr: `<path d="M1.5 3.25a2.25 2.25 0 1 1 3 2.122v5.256a2.251 2.251 0 1 1-1.5 0V5.372A2.25 2.25 0 0 1 1.5 3.25Zm5.677-.177L9.573.677A.25.25 0 0 1 10 .854V2.5h1A2.5 2.5 0 0 1 13.5 5v5.628a2.251 2.251 0 1 1-1.5 0V5a1 1 0 0 0-1-1h-1v1.646a.25.25 0 0 1-.427.177L7.177 3.427a.25.25 0 0 1 0-.354Z"/>`,
-    issue: `<path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z"/><path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0ZM1.5 8a6.5 6.5 0 1 0 13 0 6.5 6.5 0 0 0-13 0Z"/>`,
-    repo: `<path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8Z"/>`,
+/* ---------------------------------------------------------------- tags */
+function tag(x, y, label, color, t, path) {
+  const [bg, fg] = TAG[t][color];
+  const size = 13;
+  const iconW = path ? 18 : 0;
+  const w = Math.round(textW(label, size) + 16 + iconW);
+  return {
+    w,
+    svg: `<g transform="translate(${x},${y})">
+  <rect width="${w}" height="24" rx="4" fill="${bg}"/>
+  ${path ? `<g transform="translate(8,5.5) scale(0.54)" fill="${fg}"><path d="${path}"/></g>` : ""}
+  <text x="${8 + iconW}" y="16.5" font-size="${size}" fill="${fg}">${esc(label)}</text>
+</g>`,
   };
+}
+
+function tagRow(x, y, items, t) {
+  let cx = x;
+  return items
+    .map(([label, color, path]) => {
+      const g = tag(cx, y, label, color, t, path);
+      cx += g.w + 6;
+      return g.svg;
+    })
+    .join("\n");
+}
+
+/* -------------------------------------------------------------- header */
+function header(name) {
+  const t = THEMES[name];
+  const W = 1000;
+  const iconS = 96;
+  const iconX = 2;
+  const iconY = 4;
+  const titleY = iconY + iconS + 60;
+  const rowsY = titleY + 44;
+  const rowH = 40;
+  const labelX = 34;
+  const valueX = 176;
 
   const rows = [
-    ["star", "Total Stars Earned", n(stars)],
-    ["commit", "Total Commits (past year)", n(commits)],
-    ["pr", "Total PRs", n(c.totalPullRequestContributions)],
-    ["issue", "Total Issues", n(c.totalIssueContributions)],
-    ["repo", "Contributed to (past year)", n(data.user.repositoriesContributedTo.totalCount)],
+    ["role", "Role", { text: "Co-founder & CTO, TPS Collective" }],
+    ["place", "Based in", { text: "Tokyo, Japan" }],
+    ["next", "Next", { text: "Product Manager at Mercari, from April 2027" }],
+    [
+      "focus",
+      "Building",
+      { tags: [["Booking", "blue"], ["Payments", "green"], ["Operations", "yellow"], ["AI agents", "purple"]] },
+    ],
+    ["lang", "Works in", { tags: [["Japanese", "pink"], ["English", "orange"]] }],
   ];
+  const H = rowsY + rows.length * rowH + 8;
 
-  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" role="img" aria-label="${USER}'s GitHub stats">
-<title>${USER}'s GitHub stats</title>
-<rect width="${W}" height="${H}" rx="6" fill="${BG}" stroke="${BORDER}"/>
+  const body = rows
+    .map(([ic, label, v], i) => {
+      const y = rowsY + i * rowH;
+      const value = v.text
+        ? `<text x="${valueX}" y="${y + 21}" font-size="16" fill="${t.ink}">${esc(v.text)}</text>`
+        : tagRow(valueX, y + 4, v.tags, name);
+      return `<g transform="translate(6,${y + 8})" fill="none" stroke="${t.muted}" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">${PROP[ic]}</g>
+<text x="${labelX}" y="${y + 21}" font-size="15" fill="${t.muted}">${label}</text>
+${value}`;
+    })
+    .join("\n");
 
-<text x="25" y="35" font-family="${FONT}" font-size="18" font-weight="600" fill="${GREEN}">${data.user.name ?? USER}'s GitHub Stats</text>
-
-<g transform="translate(${W - 100},${H / 2 - 6})">
-  <circle r="${R}" fill="none" stroke="${GRID}" stroke-width="6"/>
-  <circle r="${R}" fill="none" stroke="${GREEN}" stroke-width="6" stroke-linecap="round"
-          transform="rotate(-90)" stroke-dasharray="${CIRC.toFixed(1)}" stroke-dashoffset="${CIRC.toFixed(1)}">
-    <animate attributeName="stroke-dashoffset" from="${CIRC.toFixed(1)}" to="${(CIRC * (1 - pct)).toFixed(1)}"
-             dur="1.2s" begin="0.3s" fill="freeze" calcMode="spline" keySplines="0.16 1 0.3 1" keyTimes="0;1"/>
-  </circle>
-  <text text-anchor="middle" y="8" font-family="${FONT}" font-size="26" font-weight="700" fill="${GREEN}">${rank}</text>
+  return `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" role="img" aria-label="Shogo Kikuchi. Co-founder and CTO, TPS Collective. Tokyo. Product Manager at Mercari from April 2027.">
+<title>Shogo Kikuchi</title>
+<defs><clipPath id="iconClip"><rect x="${iconX}" y="${iconY}" width="${iconS}" height="${iconS}" rx="12"/></clipPath></defs>
+<image href="${avatar}" x="${iconX}" y="${iconY}" width="${iconS}" height="${iconS}" clip-path="url(#iconClip)" preserveAspectRatio="xMidYMid slice"/>
+<g font-family="${FONT}">
+<text x="2" y="${titleY}" font-size="46" font-weight="700" letter-spacing="-0.8" fill="${t.ink}">Shogo Kikuchi</text>
+${body}
 </g>
-
-${rows
-  .map(([ic, label, value], i) => {
-    const yy = 68 + i * 25;
-    const delay = (0.15 + i * 0.1).toFixed(2);
-    return `<g transform="translate(25,${yy})" opacity="0">
-  <animate attributeName="opacity" from="0" to="1" begin="${delay}s" dur="0.4s" fill="freeze"/>
-  <g transform="translate(0,-11) scale(0.85)" fill="${GREEN_DIM}">${icon[ic]}</g>
-  <text x="25" y="0" font-family="${FONT}" font-size="14" fill="${TEXT}">${label}:</text>
-  <text x="270" y="0" font-family="${MONO}" font-size="14" font-weight="600" fill="${GREEN}">${value}</text>
-</g>`;
-  })
-  .join("\n")}
 </svg>
 `;
-  writeFileSync("assets/stats.svg", svg);
 }
 
-console.log("wrote assets/activity.svg and assets/stats.svg");
+/* --------------------------------------------------------------- stack */
+const STACK = [
+  ["Languages", "blue", [["TypeScript", "typescript"], ["JavaScript", "javascript"], ["Python", "python"], ["Go", "go"]]],
+  ["Frontend", "purple", [["React", "react"], ["Next.js", "nextdotjs"], ["Tailwind CSS", "tailwindcss"]]],
+  ["Backend & data", "green", [["Node.js", "nodedotjs"], ["Django", "django"], ["Supabase", "supabase"], ["PostgreSQL", "postgresql"], ["Prisma", "prisma"]]],
+  ["Infrastructure", "orange", [["Vercel", "vercel"], ["Cloudflare", "cloudflare"], ["AWS", null], ["Docker", "docker"]]],
+  ["AI & product", "pink", [["Claude API", "anthropic"], ["MCP", "modelcontextprotocol"], ["Stripe", "stripe"], ["GA4", "googleanalytics"], ["Search Console", "googlesearchconsole"]]],
+];
+const logos = Object.fromEntries(
+  await Promise.all(
+    STACK.flatMap(([, , items]) => items)
+      .filter(([, slug]) => slug)
+      .map(async ([, slug]) => [slug, await logo(slug)]),
+  ),
+);
+
+function stack(name) {
+  const t = THEMES[name];
+  const W = 1000;
+  const rowH = 46;
+  const H = STACK.length * rowH;
+  const rows = STACK.map(([label, color, items], i) => {
+    const y = i * rowH;
+    return `<text x="2" y="${y + 27}" font-size="15" fill="${t.muted}">${esc(label)}</text>
+${tagRow(176, y + 10, items.map(([l, slug]) => [l, color, slug && logos[slug]]), name)}
+${i < STACK.length - 1 ? `<line x1="0" y1="${y + rowH - 0.5}" x2="${W}" y2="${y + rowH - 0.5}" stroke="${t.rule}"/>` : ""}`;
+  }).join("\n");
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" role="img" aria-label="Stack: TypeScript, JavaScript, Python, Go, React, Next.js, Tailwind CSS, Node.js, Django, Supabase, PostgreSQL, Prisma, Vercel, Cloudflare, AWS, Docker, Claude API, MCP, Stripe, GA4, Search Console">
+<title>Stack</title>
+<g font-family="${FONT}">
+${rows}
+</g>
+</svg>
+`;
+}
+
+/* ------------------------------------------------------------ activity */
+function activity(name) {
+  const t = THEMES[name];
+  const W = 1000;
+  const cell = 14;
+  const gap = 4;
+  const gridY = 132;
+  const gridX = 2;
+
+  const figures = [
+    [n(c.contributionCalendar.totalContributions), "Contributions"],
+    [n(c.totalCommitContributions + c.restrictedContributionsCount), "Commits"],
+    [n(c.totalPullRequestContributions), "Pull requests"],
+    [n(data.user.repositoriesContributedTo.totalCount), "Repositories"],
+  ];
+  const colW = W / figures.length;
+
+  const max = Math.max(...weeks.flatMap((w) => w.contributionDays.map((d) => d.contributionCount)), 1);
+  const level = (v) => (v === 0 ? 0 : Math.min(4, Math.ceil((v / max) * 4)));
+
+  const cells = weeks
+    .map((w, wi) =>
+      w.contributionDays
+        .map((d) => {
+          const dow = new Date(d.date).getUTCDay();
+          return `<rect x="${gridX + wi * (cell + gap)}" y="${gridY + dow * (cell + gap)}" width="${cell}" height="${cell}" rx="3" fill="${t.heat[level(d.contributionCount)]}"/>`;
+        })
+        .join(""),
+    )
+    .join("\n");
+
+  // A month label above the first week that starts in that month.
+  let last = "";
+  const months = weeks
+    .map((w, wi) => {
+      const m = new Date(w.contributionDays[0].date).toLocaleDateString("en-US", { month: "short", timeZone: "UTC" });
+      if (m === last) return "";
+      last = m;
+      return wi > weeks.length - 3 ? "" : `<text x="${gridX + wi * (cell + gap)}" y="${gridY - 10}" font-size="12" fill="${t.muted}">${m}</text>`;
+    })
+    .join("");
+
+  const gridH = 7 * (cell + gap) - gap;
+  const legendY = gridY + gridH + 24;
+  const legend = t.heat
+    .map((col, i) => `<rect x="${W - 40 - (5 - i) * (cell + gap) + gap}" y="${legendY - 11}" width="${cell}" height="${cell}" rx="3" fill="${col}"/>`)
+    .join("");
+  const H = legendY + 10;
+
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" role="img" aria-label="${n(c.contributionCalendar.totalContributions)} contributions in the past year">
+<title>Activity</title>
+<g font-family="${FONT}">
+${figures
+  .map(
+    ([value, label], i) => `<text x="${2 + i * colW}" y="36" font-size="30" font-weight="600" letter-spacing="-0.5" fill="${t.ink}">${value}</text>
+<text x="${2 + i * colW}" y="62" font-size="14" fill="${t.muted}">${label}</text>`,
+  )
+  .join("\n")}
+${months}
+${cells}
+<text x="${gridX}" y="${legendY}" font-size="12" fill="${t.muted}">Past year</text>
+<text x="${W - 40 - 5 * (cell + gap) - 6}" y="${legendY}" text-anchor="end" font-size="12" fill="${t.muted}">Less</text>
+${legend}
+<text x="${W - 2}" y="${legendY}" text-anchor="end" font-size="12" fill="${t.muted}">More</text>
+</g>
+</svg>
+`;
+}
+
+/* ---------------------------------------------------------- link icons */
+// One mid-grey that reads on both backgrounds, so one file per icon.
+const GREY = "#8E8E8B";
+const linkIcons = {
+  web: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="${GREY}" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9.5"/><path d="M2.5 12h19M12 2.5c2.6 2.8 3.9 6 3.9 9.5s-1.3 6.7-3.9 9.5c-2.6-2.8-3.9-6-3.9-9.5s1.3-6.7 3.9-9.5Z"/></svg>`,
+  x: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="${GREY}"><path d="${await logo("x")}"/></svg>`,
+  linkedin: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="${GREY}"><path d="M3 4.5A1.5 1.5 0 0 1 4.5 3h15A1.5 1.5 0 0 1 21 4.5v15a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 19.5Zm3.2 5.3V18h2.6V9.8Zm1.3-4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3Zm3.6 4V18h2.6v-4.3c0-1.2.4-2.1 1.6-2.1 1.1 0 1.4.9 1.4 2.1V18h2.6v-4.9c0-2.4-1.1-3.5-3-3.5-1.3 0-2.1.6-2.6 1.3V9.8Z"/></svg>`,
+  mail: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="${GREY}" stroke-width="1.8" stroke-linejoin="round"><rect x="2.5" y="5" width="19" height="14" rx="2"/><path d="m3 6.5 9 6.5 9-6.5"/></svg>`,
+};
+
+for (const name of Object.keys(THEMES)) {
+  writeFileSync(`assets/header-${name}.svg`, header(name));
+  writeFileSync(`assets/stack-${name}.svg`, stack(name));
+  writeFileSync(`assets/activity-${name}.svg`, activity(name));
+}
+for (const [k, svg] of Object.entries(linkIcons)) writeFileSync(`assets/icons/${k}.svg`, svg);
+
+console.log("wrote assets/*.svg and assets/icons/*.svg");
